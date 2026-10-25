@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>York Self-Guided Day Trip Guide | Friends International Nottingham</title>
+    <style>
+        :root {
+            --primary: #1b4332;
+            --secondary: #2d6a4f;
+            --accent: #d8f3dc;
+            --bg: #f4f6f5;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --text-light: #718096;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(45, 106, 79, 0.85)), url('https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        header p {
+            margin: 0;
+            opacity: 0.95;
+            font-size: 1.2rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        .container {
+            max-width: 1000px;
+            margin: -2rem auto 3rem auto;
+            padding: 0 1rem;
+            position: relative;
+        }
+        .contacts-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-bottom: 2.5rem;
+            border-left: 6px solid var(--secondary);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .contacts-card h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary);
+            width: 100%;
+        }
+        .contact-item {
+            font-size: 0.95rem;
+        }
+        .contact-item a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 2px solid #cbd5e0;
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+        }
+        .category-header h2 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.6rem;
+        }
+        .category-icon {
+            font-size: 1.8rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.2rem;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid #edf2f7;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.08);
+        }
+        .card-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+        .card h4 {
+            margin: 0 0 0.3rem 0;
+            font-size: 1.15rem;
+            color: var(--primary);
+        }
+        .meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .map-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .map-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        .special-box {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+        }
+        .special-box h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        .special-box .map-btn {
+            background-color: var(--primary);
+            color: white;
+            display: inline-block;
+            width: auto;
+            padding: 0.8rem 2rem;
+            margin-top: 1rem;
+        }
+        .special-box .map-btn:hover {
+            background-color: var(--secondary);
+        }
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 4rem;
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        footer p {
+            margin: 0.5rem 0;
+        }
+        .social-links {
+            margin: 1.2rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            background: rgba(255,255,255,0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .social-links a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>York Self-Guided Day Trip Guide</h1>
+        <p>Friends International Nottingham Student Trip</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Trip Coordinators & Emergency Info -->
+        <div class="contacts-card">
+            <h3>Need Help During the Day?</h3>
+            <div class="contact-item"><strong>Lydia:</strong> <a href="tel:07783941196">07783941196</a></div>
+            <div class="contact-item"><strong>Madeleine:</strong> <a href="tel:07722416316">07722416316</a></div>
+            <div class="contact-item"><strong>Emergency:</strong> <a href="tel:999">999</a></div>
+        </div>
+
+        <!-- Food & Drink (8 spots) -->
+        <div class="category-header">
+            <span class="category-icon">☕</span>
+            <h2>Food & Drink</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80" alt="Rise">
+                <div class="card-content">
+                    <div>
+                        <h4>Rise</h4>
+                        <div class="meta">⭐ 4.7 (1,060) · £10–20 · Brunch</div>
+                    </div>
+                    <a class="map-btn" href="https://maps.app.goo.gl/qFJ4B1M7bLTwjt1F8" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=600&q=80" alt="The Cat's Whiskers">
+                <div class="card-content">
+                    <div>
+                        <h4>The Cat's Whiskers</h4>
+                        <div class="meta">⭐ 4.7 (759) · Cat Cafe</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=The+Cats+Whiskers+York" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Brew & Brownie">
+                <div class="card-content">
+                    <div>
+                        <h4>Brew & Brownie</h4>
+                        <div class="meta">⭐ 4.7 (2,402) · £10–20 · Cafe</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Brew+and+Brownie+York" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80" alt="Bettys">
+                <div class="card-content">
+                    <div>
+                        <h4>Bettys Café Tea Rooms</h4>
+                        <div class="meta">⭐ 4.6 (9,231) · Tea Room</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Bettys+Cafe+Tea+Rooms+York" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=600&q=80" alt="Drift Cafe">
+                <div class="card-content">
+                    <div>
+                        <h4>Drift Cafe</h4>
+                        <div class="meta">⭐ 4.4 (234) · £10–20 · Cafe</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Drift+Cafe+York" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1580933073521-dc49ac0d4e6a?auto=format&fit=crop&w=600&q=80" alt="Ippuku Tea House">
+                <div class="card-content">
+                    <div>
+                        <h4>Ippuku Tea House</h4>
+                        <div class="meta">⭐ 4.7 (890) · £10–20 · Japanese</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Ippuku+Tea+House+York" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=600&q=80" alt="Riverside Café-Bar">
+                <div class="card-content">
+                    <div>
+                        <h4>Riverside Café-Bar</h4>
+                        <div class="meta">⭐ 3.9 (32) · £10–20 · Cafe</div>
+                    </div>
+                    <a class="map-btn" href="https://maps.app.goo.gl/XZqsAbpLWeEAxRRT9" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Gatehouse Coffee">
+                <div class="card-content">
+                    <div>
+                        <h4>Gatehouse Coffee</h4>
+                        <div class="meta">⭐ 4.7 (815) · £1–10 · Coffee Shop</div>
+                    </div>
+                    <a class="map-btn" href="https://maps.app.goo.gl/5tWPPUzo3UGJskQ69" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shopping (4 spots) -->
+        <div class="category-header">
+            <span class="category-icon">🛍️</span>
+            <h2>Shopping</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=600&q=80" alt="Topping & Company">
+                <div class="card-content">
+                    <div>
+                        <h4>Topping & Company Booksellers</h4>
+                        <div class="meta">⭐ 4.9 (161) · Book Shop</div>
+                    </div>
+                    <a class="map-btn" href="https://maps.app.goo.gl/SKFZxphWZ4VhXGaKA" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80" alt="The Shop That Must Not Be Named">
+                <div class="card-content">
+                    <div>
+                        <h4>The Shop That Must Not Be Named</h4>
+                        <div class="meta">⭐ 4.5 (1,271) · Gift Shop</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=The+Shop+That+Must+Not+Be+Named+York" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" alt="The Yorkshire Soap Company">
+                <div class="card-content">
+                    <div>
+                        <h4>The Yorkshire Soap Company</h4>
+                        <div class="meta">⭐ 4.8 (533) · Cosmetics Shop</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=The+Yorkshire+Soap+Company+York" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80" alt="York's Chocolate Story">
+                <div class="card-content">
+                    <div>
+                        <h4>York's Chocolate Story</h4>
+                        <div class="meta">⭐ 4.6 (7,210) · Museum & Workshop</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Yorks+Chocolate+Story" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Museum (4 spots) -->
+        <div class="category-header">
+            <span class="category-icon">🏛️</span>
+            <h2>Museum</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?auto=format&fit=crop&w=600&q=80" alt="National Railway Museum">
+                <div class="card-content">
+                    <div>
+                        <h4>National Railway Museum York</h4>
+                        <div class="meta">⭐ 4.7 (32,285) · Rail Museum</div>
+                    </div>
+                    <a class="map-btn" href="https://www.railwaymuseum.org.uk" target="_blank">Click for Website</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=600&q=80" alt="York Castle Museum">
+                <div class="card-content">
+                    <div>
+                        <h4>York Castle Museum</h4>
+                        <div class="meta">⭐ 4.6 (7,575) · Historical Museum</div>
+                    </div>
+                    <a class="map-btn" href="https://www.yorkcastlemuseum.org.uk" target="_blank">Click for Website</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80" alt="JORVIK Viking Centre">
+                <div class="card-content">
+                    <div>
+                        <h4>JORVIK Viking Centre</h4>
+                        <div class="meta">⭐ 4.6 (14,725) · History Museum</div>
+                    </div>
+                    <a class="map-btn" href="https://www.jorvikvikingcentre.co.uk" target="_blank">Click for Website</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=600&q=80" alt="Yorkshire Museum">
+                <div class="card-content">
+                    <div>
+                        <h4>Yorkshire Museum</h4>
+                        <div class="meta">⭐ 4.5 (2,545) · Museum</div>
+                    </div>
+                    <a class="map-btn" href="https://www.yorkshiremuseum.org.uk" target="_blank">Click for Website</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Landmarks (8 spots) -->
+        <div class="category-header">
+            <span class="category-icon">🏰</span>
+            <h2>Landmarks</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80" alt="Library">
+                <div class="card-content">
+                    <div>
+                        <h4>York Explore Library and Archive</h4>
+                        <div class="meta">⭐ 4.7 (236) · Public Library</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=York+Explore+Library+and+Archive" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1519331379826-f10be5486c6f?auto=format&fit=crop&w=600&q=80" alt="Dean's Park">
+                <div class="card-content">
+                    <div>
+                        <h4>Dean's Park</h4>
+                        <div class="meta">⭐ 4.7 (720) · Park & Garden</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Deans+Park+York" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Tower Gardens">
+                <div class="card-content">
+                    <div>
+                        <h4>Tower Gardens</h4>
+                        <div class="meta">⭐ 4.5 (69) · Park & Garden</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Tower+Gardens+York" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=600&q=80" alt="York City Walls">
+                <div class="card-content">
+                    <div>
+                        <h4>York City Walls</h4>
+                        <div class="meta">⭐ 4.7 (2,747) · Historical Landmark</div>
+                    </div>
+                    <a class="map-btn" href="https://maps.app.goo.gl/csEf3YpTQAxs7EtV6" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Clifford's Tower">
+                <div class="card-content">
+                    <div>
+                        <h4>Clifford's Tower, York</h4>
+                        <div class="meta">⭐ 4.3 (6,227) · Historical Landmark</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Cliffords+Tower+York" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=600&q=80" alt="Shambles">
+                <div class="card-content">
+                    <div>
+                        <h4>Shambles</h4>
+                        <div class="meta">⭐ 4.7 (1,946) · Historic Street</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Shambles+York" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=600&q=80" alt="York Minster">
+                <div class="card-content">
+                    <div>
+                        <h4>York Minster</h4>
+                        <div class="meta">⭐ 4.7 (24,919) · Cathedral</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=York+Minster" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://images.unsplash.com/photo-1541447271487-09612b3f49f7?auto=format&fit=crop&w=600&q=80" alt="York Railway Station">
+                <div class="card-content">
+                    <div>
+                        <h4>York Railway Station</h4>
+                        <div class="meta">Station Rd, York YO24 1AY</div>
+                    </div>
+                    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=York+Railway+Station" target="_blank">Open in Google Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- York Cat Trail Special Box -->
+        <div class="special-box">
+            <h3>🐱 Bonus: York Cat Trail</h3>
+            <p>Search for stone and metal cat statues hidden on building facades across York! Use the official interactive map to find them all.</p>
+            <a class="map-btn" href="https://www.yorkluckycats.co.uk/york-cat-trail/" target="_blank">View Cat Trail Map</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p><strong>Friends International Nottingham</strong></p>
+        <p>Email: <a href="mailto:nottingham@friendsinternational.uk">nottingham@friendsinternational.uk</a></p>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/friendsinternationalnottingham/" target="_blank">📷 Instagram</a>
+            <a href="https://www.facebook.com/friends.international.nottingham" target="_blank">📘 Facebook</a>
+            <a href="https://www.youtube.com/channel/UCG94J3DpOQYygCzVfdFr5Sw" target="_blank">📺 YouTube</a>
+        </div>
+
+        <p>Download our app: <a href="https://friendsinternational.uk/app" target="_blank">friendsinternational.uk/app</a></p>
+        <p>Sign up for emails: <a href="https://tinyurl.com/NottinghamFriends" target="_blank">tinyurl.com/NottinghamFriends</a></p>
+        <p style="margin-top: 1.5rem; font-size: 0.85rem; opacity: 0.8;">Registered Charity 1094095</p>
+    </footer>
+
+</body>
+</html>
